@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vice Cover Studio — GTA 6-style cover maker</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<main class="app">
+  <section class="controls" id="controls">
+    <h1>Vice Cover Studio</h1>
+    <p class="tag">Turn a photo and a caption into a Vice City sunset cover. Everything runs offline, in your own browser — photos never leave the machine.</p>
+
+    <fieldset>
+      <legend>1 · Photos</legend>
+      <label class="filebtn">Upload photos (up to 4)
+        <input id="photos" type="file" accept="image/*" multiple>
+      </label>
+      <div class="samples">
+        <button id="sample-boulevard" type="button">Sample: Boulevard</button>
+        <button id="sample-pier" type="button">Sample: Pier</button>
+        <button id="clear-photos" type="button">Clear photos</button>
+      </div>
+      <div id="thumbs" class="thumbs" aria-label="Loaded photos"></div>
+      <p class="hint">One photo fills every panel with a different crop; several photos can be mixed panel by panel below.</p>
+    </fieldset>
+
+    <fieldset>
+      <legend>2 · Layout</legend>
+      <div id="layouts" class="choices"></div>
+    </fieldset>
+
+    <fieldset>
+      <legend>3 · Colour grade</legend>
+      <div id="grades" class="choices"></div>
+    </fieldset>
+
+    <fieldset>
+      <legend>4 · Caption</legend>
+      <label>Title
+        <input id="title" type="text" maxlength="40" value="VICE CITY">
+      </label>
+      <label>Subtitle
+        <input id="subtitle" type="text" maxlength="80" value="A SUNSET HEIST IN THE NEON HEAT">
+      </label>
+      <div class="row">
+        <label><input id="opt-gradient" type="checkbox" checked> Gradient letters</label>
+        <label><input id="opt-outline" type="checkbox" checked> Outline</label>
+        <label><input id="opt-shadow" type="checkbox" checked> Shadow</label>
+      </div>
+      <label>Title align
+        <select id="align">
+          <option value="left">Left</option>
+          <option value="center" selected>Center</option>
+          <option value="right">Right</option>
+        </select>
+      </label>
+    </fieldset>
+
+    <fieldset>
+      <legend>5 · Panels</legend>
+      <label>Panel
+        <select id="panel-select"></select>
+      </label>
+      <label>Photo in this panel
+        <select id="panel-photo"></select>
+      </label>
+      <label>Zoom <span id="zoom-val" class="val">1.15×</span>
+        <input id="panel-zoom" type="range" min="1" max="3" step="0.05" value="1.15">
+      </label>
+      <label>Pan left / right
+        <input id="panel-dx" type="range" min="-1" max="1" step="0.05" value="0">
+      </label>
+      <label>Pan up / down
+        <input id="panel-dy" type="range" min="-1" max="1" step="0.05" value="0">
+      </label>
+      <p class="hint">Tip: click a panel in the preview to select it.</p>
+    </fieldset>
+
+    <fieldset>
+      <legend>6 · Finish &amp; export</legend>
+      <div class="row">
+        <label><input id="opt-grain" type="checkbox" checked> Film grain</label>
+        <label><input id="opt-vignette" type="checkbox" checked> Vignette</label>
+      </div>
+      <label>Preview size
+        <span id="sizes" class="choices"></span>
+      </label>
+      <div class="exports">
+        <button id="export-1080x1080" type="button">PNG 1080 × 1080</button>
+        <button id="export-1080x1350" type="button">PNG 1080 × 1350</button>
+        <button id="export-1920x1080" type="button">PNG 1920 × 1080</button>
+        <button id="export-all" type="button" class="primary">Export all three</button>
+      </div>
+      <p id="status" role="status"></p>
+    </fieldset>
+  </section>
+
+  <section class="preview">
+    <canvas id="cover" width="960" height="540" aria-label="Cover preview"></canvas>
+    <p id="preview-note" class="preview-note"></p>
+    <pre id="verify" hidden></pre>
+    <p id="errors" class="errors" hidden></p>
+  </section>
+</main>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
